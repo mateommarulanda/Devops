@@ -1,13 +1,13 @@
 package com.example.ApiRest.services;
-
-import com.example.ApiRest.models.PeliculaModel;
 import com.example.ApiRest.models.TiendaModel;
 import com.example.ApiRest.repositories.ITiendaRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
+@Service
 public class TiendaService {
 
     @Autowired
@@ -24,13 +24,13 @@ public class TiendaService {
     }
 
     //Get id
-    public Optional<TiendaModel> getById(Long id){
-        return tiendaRepositorie.findById(id);
+    public Optional<TiendaModel> getById(Long id_tienda){
+        return tiendaRepositorie.findById(id_tienda);
     }
 
     //Put (Update)
-    public TiendaModel updateByIdTienda(TiendaModel request, Long id){
-        TiendaModel tienda = tiendaRepositorie.findById(id).get();
+    public TiendaModel updateByIdTienda(TiendaModel request, Long id_tienda){
+        TiendaModel tienda = tiendaRepositorie.findById(id_tienda).get();
 
         tienda.setNombreTienda(request.getNombreTienda());
         tienda.setCiudad(request.getCiudad());
@@ -41,10 +41,11 @@ public class TiendaService {
         return  tienda;
     }
 
-    public Boolean deleteTienda(Long id){
+    //Delete
+    public Boolean deleteTienda(Long id_tienda){
         try
         {
-            tiendaRepositorie.deleteById(id);
+            tiendaRepositorie.deleteById(id_tienda);
             return true;
         }
         catch (Exception e)

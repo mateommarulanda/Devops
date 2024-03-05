@@ -24,7 +24,7 @@ public class TiendaModel {
     @Column
     private String nombreTienda;
     @Column
-    private String cantidadPelicula;
+    private Integer cantidadPelicula;
     @Column
     private String direccion;
     @Column
@@ -48,11 +48,11 @@ public class TiendaModel {
         this.nombreTienda = nombreTienda;
     }
 
-    public String getCantidadPelicula() {
+    public Integer getCantidadPelicula() {
         return cantidadPelicula;
     }
 
-    public void setCantidadPelicula(String cantidadPelicula) {
+    public void setCantidadPelicula(Integer cantidadPelicula) {
         this.cantidadPelicula = cantidadPelicula;
     }
 

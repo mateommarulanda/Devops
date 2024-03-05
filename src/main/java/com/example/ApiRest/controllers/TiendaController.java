@@ -28,29 +28,29 @@ public class TiendaController {
     }
 
     //Get id
-    @GetMapping(path = "/{id}")
-    public Optional<TiendaModel> getPeliculaById(@PathVariable("id") Long id){
-        return this.tiendaService.getById(id);
+    @GetMapping(path = "/{id_tienda}")
+    public Optional<TiendaModel> getPeliculaById(@PathVariable("id_tienda") Long id_tienda){
+        return this.tiendaService.getById(id_tienda);
     }
 
     //Put (Update)
-    @PatchMapping(path = "/{id}")
-    public TiendaModel updateTiendaById(@RequestBody TiendaModel request,@PathVariable("id") Long id){
-        return this.tiendaService.updateByIdTienda(request, id);
+    @PatchMapping(path = "/{id_tienda}")
+    public TiendaModel updateTiendaById(@RequestBody TiendaModel request,@PathVariable("id_tienda") Long id_tienda){
+        return this.tiendaService.updateByIdTienda(request, id_tienda);
     }
 
     // Delete
-    @DeleteMapping(path = "/{id}")
-    public String deleteById(@PathVariable("id") Long id){
-        boolean ok = this.tiendaService.deleteTienda(id);
+    @DeleteMapping(path = "/{id_tienda}")
+    public String deleteById(@PathVariable("id_tienda") Long id_tienda){
+        boolean ok = this.tiendaService.deleteTienda(id_tienda);
 
         if(ok)
         {
-            return "Pelicula con el id:" + id + " se elimino";
+            return "Tienda con el id:" + id_tienda + " se elimino";
         }
         else
         {
-            return "Error, la pelicula con el id:" + id + " no se pudo eliminar";
+            return "Error, la tienda con el id:" + id_tienda + " no se pudo eliminar";
         }
     }
 }
