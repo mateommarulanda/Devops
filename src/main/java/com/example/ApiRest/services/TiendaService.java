@@ -38,7 +38,7 @@ public class TiendaService {
         tienda.setCantidadPelicula(request.getCantidadPelicula());
         tienda.setNumeroEmpleados(request.getNumeroEmpleados());
 
-        return  tienda;
+        return  tiendaRepositorie.save(tienda);
     }
 
     //Delete

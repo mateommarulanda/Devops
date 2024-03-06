@@ -1,4 +1,5 @@
 package com.example.ApiRest.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -23,9 +24,17 @@ public class PeliculaModel {
     @Column
     private Integer valor;
 
-    @ManyToMany(mappedBy = "pelicula")
-    @JsonIgnoreProperties("pelicula")
-    private Set<TiendaModel> tienda = new HashSet<>();
+    @ManyToMany(mappedBy = "peliculas")
+    @JsonIgnore
+    private Set<TiendaModel> tiendas = new HashSet<>();
+
+    public Set<TiendaModel> getTiendas() {
+        return tiendas;
+    }
+
+    public void setTiendas(Set<TiendaModel> tiendas) {
+        this.tiendas = tiendas;
+    }
 
     public Long getId() {
         return id;
@@ -75,11 +84,4 @@ public class PeliculaModel {
     }
 
 
-    public Set<TiendaModel> getPelicula() {
-        return tienda;
-    }
-
-    public void setPelicula(Set<TiendaModel> pelicula) {
-        this.tienda = pelicula;
-    }
 }

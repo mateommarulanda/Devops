@@ -1,4 +1,5 @@
 package com.example.ApiRest.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -17,9 +18,9 @@ public class TiendaModel {
             joinColumns = @JoinColumn(name = "id_tienda"),
             inverseJoinColumns = @JoinColumn(name = "id")
     )
-    @JsonIgnoreProperties("tienda")
+    @JsonIgnore
 
-    private Set<PeliculaModel> pelicula = new HashSet<>();
+    public Set<PeliculaModel> peliculas = new HashSet<>();
 
     @Column
     private String nombreTienda;
@@ -81,10 +82,10 @@ public class TiendaModel {
     }
 
     public Set<PeliculaModel> getPelicula() {
-        return pelicula;
+        return peliculas;
     }
 
     public void setPelicula(Set<PeliculaModel> pelicula) {
-        this.pelicula = pelicula;
+        this.peliculas = pelicula;
     }
 }

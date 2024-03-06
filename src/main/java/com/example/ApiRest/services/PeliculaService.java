@@ -1,5 +1,6 @@
 package com.example.ApiRest.services;
 import com.example.ApiRest.models.PeliculaModel;
+import com.example.ApiRest.models.TiendaModel;
 import com.example.ApiRest.repositories.IPeliculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class PeliculaService {
         pelicula.setGenero(request.getGenero());
         pelicula.setValor(request.getValor());
 
-        return  pelicula;
+        return  peliculaRepository.save(pelicula);
     }
 
     // Delete

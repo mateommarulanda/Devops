@@ -1,6 +1,10 @@
 package com.example.ApiRest.controllers;
 import com.example.ApiRest.models.PeliculaModel;
+import com.example.ApiRest.models.TiendaModel;
+import com.example.ApiRest.repositories.IPeliculaRepository;
+import com.example.ApiRest.repositories.ITiendaRepositorie;
 import com.example.ApiRest.services.PeliculaService;
+import com.example.ApiRest.services.TiendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -12,6 +16,10 @@ public class PeliculaController {
 
     @Autowired
     private PeliculaService peliculaService;
+    @Autowired
+    private ITiendaRepositorie tiendaRepositorie;
+    @Autowired
+    private IPeliculaRepository peliculaRepository;
 
     //Get
     @GetMapping
@@ -20,11 +28,35 @@ public class PeliculaController {
     }
 
     //Post
-    //@PostMapping("/agregar")
     @PostMapping
     public PeliculaModel savePelicula(@RequestBody PeliculaModel pelicula){
         return this.peliculaService.savePelicula(pelicula);
     }
+
+    //Post Union
+    @PostMapping(path = "/{id}/{idtienda}")
+    public String savePeliculaAndTeinda(@PathVariable Long id, @PathVariable Long id_tienda) {
+        PeliculaModel pelicula = peliculaRepository.findById(id).orElse(null);
+        TiendaModel tienda = tiendaRepositorie.findById(id_tienda).orElse(null);
+        pelicula.getTiendas().add(tienda);
+        peliculaRepository.save(pelicula);
+        return "Pelicula asociada a la tienda de venta";
+    }
+
+    /*@PostMapping(path = "/{id}/{id_tienda}")
+    public String savePeliculaAndTeinda(@PathVariable long id, @PathVariable long id_tienda) {
+        PeliculaModel pelicula = peliculaRepository.findById(id).orElse(null);
+        TiendaModel tienda = tiendaRepositorie.findById(id_tienda).orElse(null);
+
+        if (pelicula != null && tienda != null) {
+            tienda.getPelicula().add(pelicula);
+            tiendaRepositorie.save(tienda);
+            peliculaRepository.save(pelicula);
+            return "Pelicula asociada a la tienda de venta";
+        } else {
+            return "Error al asociar la película a la tienda. Película o tienda no encontrada.";
+        }
+    }*/
 
     //Get id
     @GetMapping(path = "/{id}")
@@ -33,9 +65,9 @@ public class PeliculaController {
     }
 
     //Put (Update)
-    @PatchMapping(path = "/{id}")
-    public PeliculaModel updatePeliculaById(@RequestBody PeliculaModel request,@PathVariable("id") Long id){
-        return this.peliculaService.updateById(request, id);
+    @PutMapping(path = "/{id}")
+    public PeliculaModel updatePeliculaById(@RequestBody PeliculaModel pelicula,@PathVariable("id") long id){
+        return this.peliculaService.updateById(pelicula, id);
     }
 
     // Delete

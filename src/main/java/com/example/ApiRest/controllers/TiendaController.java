@@ -1,6 +1,8 @@
 package com.example.ApiRest.controllers;
 import com.example.ApiRest.models.PeliculaModel;
 import com.example.ApiRest.models.TiendaModel;
+import com.example.ApiRest.repositories.IPeliculaRepository;
+import com.example.ApiRest.repositories.ITiendaRepositorie;
 import com.example.ApiRest.services.PeliculaService;
 import com.example.ApiRest.services.TiendaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,10 @@ public class TiendaController {
 
     @Autowired
     private TiendaService tiendaService;
+    @Autowired
+    private ITiendaRepositorie tiendaRepositorie;
+    @Autowired
+    private IPeliculaRepository peliculaRepository;
 
     @GetMapping
     public ArrayList<TiendaModel> getTienda(){
@@ -21,7 +27,6 @@ public class TiendaController {
     }
 
     //Post
-    //@PostMapping("/agregar")
     @PostMapping
     public TiendaModel saveTienda(@RequestBody TiendaModel tienda){
         return this.tiendaService.saveTienda(tienda);
@@ -34,9 +39,9 @@ public class TiendaController {
     }
 
     //Put (Update)
-    @PatchMapping(path = "/{id_tienda}")
-    public TiendaModel updateTiendaById(@RequestBody TiendaModel request,@PathVariable("id_tienda") Long id_tienda){
-        return this.tiendaService.updateByIdTienda(request, id_tienda);
+    @PutMapping(path = "/{id_tienda}")
+    public TiendaModel updateTiendaById(@RequestBody TiendaModel tienda,@PathVariable("id_tienda") long id_tienda){
+        return this.tiendaService.updateByIdTienda(tienda, id_tienda);
     }
 
     // Delete
