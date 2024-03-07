@@ -33,9 +33,9 @@ public class TiendaService {
         TiendaModel tienda = tiendaRepositorie.findById(id_tienda).get();
 
         tienda.setNombreTienda(request.getNombreTienda());
+        tienda.setCantidadPelicula(request.getCantidadPelicula());
         tienda.setCiudad(request.getCiudad());
         tienda.setDireccion(request.getDireccion());
-        tienda.setCantidadPelicula(request.getCantidadPelicula());
         tienda.setNumeroEmpleados(request.getNumeroEmpleados());
 
         return  tiendaRepositorie.save(tienda);
