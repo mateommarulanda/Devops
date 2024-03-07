@@ -33,16 +33,6 @@ public class PeliculaController {
         return this.peliculaService.savePelicula(pelicula);
     }
 
-    //Post Union
-    /*@PostMapping(path = "/{id}/{id_tienda}")
-    public String savePeliculaAndTeinda(@PathVariable long id, @PathVariable long id_tienda) {
-        PeliculaModel pelicula = peliculaRepository.findById(id).orElse(null);
-        TiendaModel tienda = tiendaRepositorie.findById(id_tienda).orElse(null);
-        pelicula.getTiendas().add(tienda);
-        peliculaRepository.save(pelicula);
-        return "Pelicula asociada a la tienda de venta";
-    }*/
-
     @PostMapping(path = "/{id}/{id_tienda}")
     public String savePeliculaAndTeinda(@PathVariable long id, @PathVariable long id_tienda) {
         PeliculaModel pelicula = peliculaRepository.findById(id).orElse(null);
