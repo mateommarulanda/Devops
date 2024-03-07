@@ -34,16 +34,16 @@ public class PeliculaController {
     }
 
     //Post Union
-    @PostMapping(path = "/{id}/{idtienda}")
-    public String savePeliculaAndTeinda(@PathVariable Long id, @PathVariable Long id_tienda) {
+    /*@PostMapping(path = "/{id}/{id_tienda}")
+    public String savePeliculaAndTeinda(@PathVariable long id, @PathVariable long id_tienda) {
         PeliculaModel pelicula = peliculaRepository.findById(id).orElse(null);
         TiendaModel tienda = tiendaRepositorie.findById(id_tienda).orElse(null);
         pelicula.getTiendas().add(tienda);
         peliculaRepository.save(pelicula);
         return "Pelicula asociada a la tienda de venta";
-    }
+    }*/
 
-    /*@PostMapping(path = "/{id}/{id_tienda}")
+    @PostMapping(path = "/{id}/{id_tienda}")
     public String savePeliculaAndTeinda(@PathVariable long id, @PathVariable long id_tienda) {
         PeliculaModel pelicula = peliculaRepository.findById(id).orElse(null);
         TiendaModel tienda = tiendaRepositorie.findById(id_tienda).orElse(null);
@@ -56,7 +56,7 @@ public class PeliculaController {
         } else {
             return "Error al asociar la película a la tienda. Película o tienda no encontrada.";
         }
-    }*/
+    }
 
     //Get id
     @GetMapping(path = "/{id}")
