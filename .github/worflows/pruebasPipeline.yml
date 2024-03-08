@@ -3,7 +3,7 @@ name: Branch Run
 on:
   push:
     branches:
-      - pruebas
+      - master
 jobs:
   test:
     runs-on: ubuntu-latest
