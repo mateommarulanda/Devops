@@ -5,7 +5,7 @@
 
 #---------------------------------------------------------------------------------------------------------------#
 
-FROM openjdk:17
-COPY target/ApiRest-0.0.1-SNAPSHOT.jar ApiRest-0.0.1-SNAPSHOT.jar
-#COPY ./target/employee-jdbc-0.0.1-SNAPSHOT.jar employee-jdbc-0.0.1-SNAPSHOT.jar
-CMD ["java", "-jar", "ApiRest-0.0.1-SNAPSHOT.jar"]
+FROM postgres:latest
+
+ENV POSTGRES_USER=postgres \
+    POSTGRES_PASSWORD=admin
