@@ -71,7 +71,7 @@ public class PeliculaController {
         }
         else
         {
-            return "Error, la pelicula con el id:" + id + " no se pudo eliminar";
+            return "Error, la pelicula con el id:" + id + " no se pudo eliminar ";
         }
     }
 
