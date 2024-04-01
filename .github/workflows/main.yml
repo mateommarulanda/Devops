@@ -1,4 +1,4 @@
-name: Branch Run Brnach
+name: Branch Run Branch
 
 on:
   push:
