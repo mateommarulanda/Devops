@@ -1,4 +1,4 @@
-name: Branch Run Master
+name: Branch Run Master Final
 
 on:
   push:
