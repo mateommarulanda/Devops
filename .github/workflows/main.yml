@@ -1,11 +1,10 @@
-name: Branch Run Branch
+name: CI Pipeline
+on: [push, pull_request]
 
-on:
-  push:
-    branches:
-      - Pruebas
 jobs:
-  test:
+  deploy-dev:
+    environment:
+      name: Desarollo
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,8 +18,54 @@ jobs:
           cache: maven
 
       - name: Base de datos pruebas
-        working-directory: src/test/database
+        working-directory: src/test/database/
         run: docker compose up -d
 
-      - name: pipelinePruebas
+      - name: Pruebas
+        run: mvn test
+
+  deploy-staging:
+    needs: deploy-dev
+    environment:
+      name: Staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Java and Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: maven
+
+      - name: Base de datos pruebas
+        working-directory: src/test/database/
+        run: docker compose up -d
+
+      - name: Pruebas
+        run: mvn test
+
+  deploy-prod:
+    needs: deploy-staging
+    environment:
+      name: Produccion
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Java and Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: maven
+
+      - name: Base de datos pruebas
+        working-directory: src/test/database/
+        run: docker compose up -d
+
+      - name: Pruebas
         run: mvn test
