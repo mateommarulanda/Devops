@@ -1,4 +1,4 @@
-name: Branch Run
+name: Branch Run Master
 
 on:
   push:
