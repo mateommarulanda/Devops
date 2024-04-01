@@ -42,7 +42,7 @@ public class PeliculaController {
             tienda.getPelicula().add(pelicula);
             tiendaRepositorie.save(tienda);
             peliculaRepository.save(pelicula);
-            return "Pelicula asociada a la tienda de venta";
+            return "Pelicula asociada a la tienda de venta exitosamente";
         } else {
             return "Error al asociar la película a la tienda. Película o tienda no encontrada en ningun lugar.";
         }
