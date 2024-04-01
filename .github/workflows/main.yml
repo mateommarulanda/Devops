@@ -1,9 +1,8 @@
-name: Branch Run Master
+name: Branch Run Brnach
 
 on:
   push:
     branches:
-      - master
       - Pruebas
 jobs:
   test:
