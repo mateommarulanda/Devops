@@ -44,7 +44,7 @@ public class PeliculaController {
             peliculaRepository.save(pelicula);
             return "Pelicula asociada a la tienda de venta";
         } else {
-            return "Error al asociar la película a la tienda. Película o tienda no encontrada.";
+            return "Error al asociar la película a la tienda. Película o tienda no encontrada en ningun lugar.";
         }
     }
 
@@ -71,7 +71,7 @@ public class PeliculaController {
         }
         else
         {
-            return "Error, la pelicula con el id:" + id + " no se pudo eliminar nada";
+            return "Error, la pelicula con el id:" + id + " no se pudo eliminar";
         }
     }
 
