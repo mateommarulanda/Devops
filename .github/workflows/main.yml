@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - Pruebas
 jobs:
   test:
     runs-on: ubuntu-latest
